@@ -2,6 +2,7 @@
 import mainHeader from "../../components/mainHeader";
 import mainNav from "../../components/mainNav";
 import mainDashboard from "../../components/mainDashboard";
+import mainInputTable from "../../components/mainInputTable";
 import mainFooter from "../../components/mainFooter";
 
 export default {
@@ -9,6 +10,7 @@ export default {
     mainHeader,
     mainNav,
     mainDashboard,
+    mainInputTable,
     mainFooter
   }
 };
@@ -20,7 +22,10 @@ export default {
     <div id="layoutSidenav">
       <mainNav />
       <div id="layoutSidenav_content">
-        <mainDashboard />
+        <div class="container-fluid px-4">
+          <mainDashboard />
+          <mainInputTable />
+        </div>
         <mainFooter />
       </div>
     </div>
