@@ -5,46 +5,157 @@
       압연공정의 설정값을 입력해주세요.
     </div>
     <div class="card-body">
-      <table id="datatablesSimple">
+      <table class="inputTable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
+            <th>Feature 1</th>
+            <th>Feature 2</th>
+            <th>Feature 3</th>
+            <th>Feature 4</th>
+            <th>Feature 5</th>
+            <th>Feature 6</th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-          </tr>
-        </tfoot>
         <tbody>
           <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
+            <td>
+              <input
+                v-model="feature1"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature2"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature3"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature4"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature5"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature6"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
           </tr>
+        </tbody>
+      </table>
+      <table class="inputTable">
+        <thead>
           <tr>
-            <td>Garrett Winters</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-            <td>$170,750</td>
+            <th>Feature 7</th>
+            <th>Feature 8</th>
+            <th>Feature 9</th>
+            <th>Feature 10</th>
+            <th>Feature 11</th>
+            <th>Feature 12</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                v-model="feature7"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature8"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature9"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature10"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature11"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
+            <td>
+              <input
+                v-model="feature12"
+                type="text"
+                placeholder="값을 입력해주세요"
+                class="main-searchbox"
+              />
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {},
+  data() {
+    return {
+      feature1: "",
+      feature2: "",
+      feature3: "",
+      feature4: "",
+      feature5: "",
+      feature6: "",
+      feature7: "",
+      feature8: "",
+      feature9: "",
+      feature10: "",
+      feature11: "",
+      feature12: ""
+    };
+  },
+  components: {}
+};
+</script>
