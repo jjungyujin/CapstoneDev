@@ -2,12 +2,14 @@
 import mainHeader from "../../components/mainHeader";
 import mainNav from "../../components/mainNav";
 import mainDashboard from "../../components/mainDashboard";
+import mainFooter from "../../components/mainFooter";
 
 export default {
   components: {
     mainHeader,
     mainNav,
-    mainDashboard
+    mainDashboard,
+    mainFooter
   }
 };
 </script>
@@ -17,7 +19,10 @@ export default {
     <mainHeader />
     <div id="layoutSidenav">
       <mainNav />
-      <mainDashboard />
+      <div id="layoutSidenav_content">
+        <mainDashboard />
+        <mainFooter />
+      </div>
     </div>
   </div>
 </template>
