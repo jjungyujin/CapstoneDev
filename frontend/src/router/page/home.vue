@@ -5,6 +5,7 @@ import mainDashboard from "../../components/mainDashboard";
 import mainInputTableHeader from "../../components/mainInputTableHeader";
 import mainInputTable from "../../components/mainInputTable";
 import resetButton from "../../components/resetButton";
+import predictButton from "../../components/predictButton";
 import mainFooter from "../../components/mainFooter";
 
 export default {
@@ -15,6 +16,7 @@ export default {
     mainInputTableHeader,
     mainInputTable,
     resetButton,
+    predictButton,
     mainFooter
   }
 };
@@ -31,7 +33,10 @@ export default {
           <div class="card mb-4">
             <mainInputTableHeader />
             <mainInputTable />
-            <resetButton />
+            <div class="main-input-table-button">
+              <resetButton />
+              <predictButton />
+            </div>
           </div>
         </div>
         <mainFooter />

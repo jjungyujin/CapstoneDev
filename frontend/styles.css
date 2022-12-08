@@ -19,7 +19,7 @@
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  border: 1px solid #ced4da;
+  border: 1px solid #001a41;
   border-radius: 0.25rem;
 }
 
@@ -28,23 +28,43 @@
 }
 
 th {
+  border: 1px solid #001a41;
   text-align: inherit;
   text-align: -webkit-match-parent;
   padding-left: 5px;
-  border: 1px 1px 0px 1px;
-  border-style: solid;
-  border-color: #ced4da;
 }
 
 td {
+  border: 1px solid #001a41;
   padding: 5px;
-  border: 0px 1px 1px 1px;
-  border-style: solid;
-  border-color: #ced4da;
 }
 
 .main-searchbox {
   border: 0px;
+}
+
+.main-input-table-button {
+  margin-left: 1040px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 0px;
+  width: 140px;
+}
+
+#reset-button,
+#predict-button {
+  width: 60px;
+  border: 1px solid #001a41;
+  border-radius: 0.25rem;
+  display: inline-block;
+}
+
+#reset-button:hover,
+#predict-button:hover {
+  background-color: #001a41;
+  color: #f8f9fa;
+  border-color: #001a41;
 }
 
 :root {
