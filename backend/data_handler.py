@@ -4,21 +4,24 @@ import os
 import utils
 
 def make_merged_df(THICKNESS_PATH, MATERIAL_PATH, columns):
-    thickness_folders = [THICKNESS_PATH + i for i in os.listdir(THICKNESS_PATH)]
+    thickness_folders = [i for i in os.listdir(THICKNESS_PATH)]
     thickness_folders = sorted(thickness_folders)
+    print(thickness_folders)
 
-    material_folders = [MATERIAL_PATH + i for i in os.listdir(MATERIAL_PATH)]
+    material_folders = [i for i in os.listdir(MATERIAL_PATH)]
     material_folders = sorted(material_folders)
-    
+    print(material_folders)
     # thickness dataframe
     thickness_df_all_years = pd.DataFrame()
     for thickness_file in thickness_folders:
+        print(thickness_file)
         if thickness_file.startswith('2CRM'):
-            thickness_df= pd.read_csv(thickness_file, parse_dates=['TIME'])
+            thickness_df= pd.read_csv(THICKNESS_PATH+'/'+thickness_file, parse_dates=['TIME'])
             thickness_df_all_years = pd.concat([thickness_df_all_years, thickness_df])
         else:
-            new_data_thickness_df= pd.read_csv(thickness_file, parse_dates=['TIME'])
+            new_data_thickness_df = pd.read_csv(THICKNESS_PATH+'/'+thickness_file)
             new_data_thickness_df.columns = columns
+            new_data_thickness_df['TIME'] = pd.to_datetime(new_data_thickness_df['TIME'], format="%Y-%m-%d %H:%M:%S")
             thickness_df_all_years = pd.concat([thickness_df_all_years, new_data_thickness_df])
     # 두께파일 전부 merge
     thickness_df_all_years = thickness_df_all_years.sort_values('TIME')
@@ -28,10 +31,10 @@ def make_merged_df(THICKNESS_PATH, MATERIAL_PATH, columns):
     material_df_df_all_years = pd.DataFrame()
     for material_file in material_folders:
         if thickness_file.startswith('2CRM'):
-            material_df= pd.read_csv(material_file, parse_dates=['TIME'])
+            material_df= pd.read_csv(MATERIAL_PATH+'/'+material_file, parse_dates=['TIME'])
             material_df_df_all_years = pd.concat([material_df_df_all_years, material_df])
         else:
-            new_data_material_df = pd.read_csv(material_file, parse_dates=['TIME']).drop(['Unnamed: 0', 'TIME_MS'], axis = 1)
+            new_data_material_df = pd.read_csv(MATERIAL_PATH+'/'+material_file, parse_dates=['TIME']).drop(['TIME_MS'], axis = 1)
             material_df_df_all_years = pd.concat([material_df_df_all_years, new_data_material_df])
     # 자료파일 전부 merge
     material_df_df_all_years = material_df_df_all_years.sort_values('TIME')
@@ -40,7 +43,7 @@ def make_merged_df(THICKNESS_PATH, MATERIAL_PATH, columns):
     # 두께 자료 파일 merge
     df_all_merge = pd.merge(thickness_df_all_years, material_df_df_all_years, how = 'inner', on='TIME')
     df_all_merge = df_all_merge[df_all_merge['PRC_CD'] == 'CR21'].reset_index(drop=True)
-
+    df_all_merge = df_all_merge.drop(['Unnamed: 0'], axis = 1)
     return df_all_merge
 
 
@@ -50,7 +53,7 @@ def preprocessing_df(df_all_merge, thk_colums, jaryo_columns):
     df_all_merge = df_all_merge.drop(coil_no_diff_idx).drop('COIL_NO_y', axis = 1)
     df_all_merge = df_all_merge.rename(columns = {'COIL_NO_x' : 'COIL_NO'})
 
-    df_all_merge.columns = df_all_merge.columns.apply(lambda x: x[3:] if x.startswith('DK_') else x)
+    df_all_merge.columns = df_all_merge.columns.map(lambda x: x[3:] if x.startswith('DK_') else x)
 
     df_all_merge['N2_AGC_DB222_DD154'] = df_all_merge['N2_AGC_DB222_DD154'].replace(0, np.NaN)
     df_all_merge['N2_AGC_DB222_DD154'] = df_all_merge['N2_AGC_DB222_DD154'].fillna(method = 'ffill')
@@ -62,13 +65,10 @@ def preprocessing_df(df_all_merge, thk_colums, jaryo_columns):
     return df_all_merge
 
 
-def extract_vibration(df_all_merge_path, vibration_path): # method3 진행
-    
-    all_df = pd.read_csv(df_all_merge_path).drop('Unnamed: 0', axis=1)
-    
+def extract_vibration(df_all_merge): # method3 진행
     processed_list = []
 
-    for name, value in all_df.groupby('COIL_NO'):
+    for name, value in df_all_merge.groupby('COIL_NO'):
         pass_no_list = value['PASS_NO'].unique()
         end_pass_no = pass_no_list[-1]
     
@@ -119,12 +119,10 @@ def extract_vibration(df_all_merge_path, vibration_path): # method3 진행
     
     less_change_df = less_change_df.drop('THK_ACT_AVG_CHANGE_AMT', axis = 1)
 
-    less_change_df.to_csv(f'{vibration_path}/vibration.csv')
+    return less_change_df
     
 
-def make_final_df(vibration_path, final_csv_path):
-    vib_df = pd.read_csv(f'{vibration_path}/vibration.csv', index_col = 0)
-
+def make_final_df(vib_df, final_csv_path):
     select_df = pd.DataFrame(columns=vib_df.columns)
     coil_no_list = [i for i in vib_df.COIL_NO.unique()]
     
@@ -133,6 +131,11 @@ def make_final_df(vibration_path, final_csv_path):
         for pass_no in pass_list:
            select_df = pd.concat([select_df, vib_df[(vib_df['COIL_NO'] == coil_no) & (vib_df['PASS_NO'] == pass_no)].sample(n=10)])
     
+    for coil_no in coil_no_list:
+        pass_list = vib_df[vib_df['COIL_NO'] == coil_no]['PASS_NO'].unique()
+        for pass_no in pass_list:
+            select_df = pd.concat([select_df, vib_df[(vib_df['COIL_NO'] == coil_no) & (vib_df['PASS_NO'] == pass_no)].sample(n=10)])
+
     sampled_dfs = []
     for coil in coil_no_list:
         sampled_dfs.append(select_df[select_df['COIL_NO'] == coil])
@@ -153,7 +156,6 @@ def make_final_df(vibration_path, final_csv_path):
             multiplied_df = pd.concat([pass1_df, pass2_df], axis = 1)
             multiplied_merge_df = pd.concat([multiplied_merge_df, multiplied_df], axis = 0)
 
-    final_df = pd.concat([final_df, multiplied_merge_df], axis = 0)
     final_df = final_df.drop(['COIL_NO', 'PASS_NO', 'PASS_NO_y','TIME'], axis = 1)
     final_df = final_df.rename(columns = utils.rename_dict)
     final_df = final_df[utils.used_columns]
