@@ -36,6 +36,6 @@ def save_model(model, train_X, train_y, model_path):
 
 def predict_value(model_path, input_list):
     model_file = [model_path + i for i in os.listdir(model_path)][0]
-    model = joblib.load(model_path)
+    model = joblib.load(model_file)
 
     return f'{model.predict(input_list)}'
