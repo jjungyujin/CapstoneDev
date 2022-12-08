@@ -1,139 +1,133 @@
 <template>
-  <div class="card mb-4">
-    <div class="card-header">
-      <i class="fas fa-table me-1"></i>
-      압연공정의 설정값을 입력해주세요.
-    </div>
-    <div class="card-body">
-      <table class="inputTable">
-        <thead>
-          <tr>
-            <th>Feature 1</th>
-            <th>Feature 2</th>
-            <th>Feature 3</th>
-            <th>Feature 4</th>
-            <th>Feature 5</th>
-            <th>Feature 6</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                v-model="feature1"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature2"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature3"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature4"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature5"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature6"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <table class="inputTable">
-        <thead>
-          <tr>
-            <th>Feature 7</th>
-            <th>Feature 8</th>
-            <th>Feature 9</th>
-            <th>Feature 10</th>
-            <th>Feature 11</th>
-            <th>Feature 12</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                v-model="feature7"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature8"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature9"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature10"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature11"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-            <td>
-              <input
-                v-model="feature12"
-                type="text"
-                placeholder="값을 입력해주세요"
-                class="main-searchbox"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="card-body">
+    <table class="inputTable">
+      <thead>
+        <tr>
+          <th>Feature 1</th>
+          <th>Feature 2</th>
+          <th>Feature 3</th>
+          <th>Feature 4</th>
+          <th>Feature 5</th>
+          <th>Feature 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              v-model="feature1"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature2"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature3"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature4"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature5"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature6"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="inputTable">
+      <thead>
+        <tr>
+          <th>Feature 7</th>
+          <th>Feature 8</th>
+          <th>Feature 9</th>
+          <th>Feature 10</th>
+          <th>Feature 11</th>
+          <th>Feature 12</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              v-model="feature7"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature8"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature9"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature10"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature11"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+          <td>
+            <input
+              v-model="feature12"
+              type="text"
+              placeholder="값을 입력해주세요"
+              class="main-searchbox"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
