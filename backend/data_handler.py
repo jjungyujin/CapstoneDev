@@ -6,15 +6,13 @@ import utils
 def make_merged_df(THICKNESS_PATH, MATERIAL_PATH, columns):
     thickness_folders = [i for i in os.listdir(THICKNESS_PATH)]
     thickness_folders = sorted(thickness_folders)
-    print(thickness_folders)
 
     material_folders = [i for i in os.listdir(MATERIAL_PATH)]
     material_folders = sorted(material_folders)
-    print(material_folders)
+    
     # thickness dataframe
     thickness_df_all_years = pd.DataFrame()
     for thickness_file in thickness_folders:
-        print(thickness_file)
         if thickness_file.startswith('2CRM'):
             thickness_df= pd.read_csv(THICKNESS_PATH+'/'+thickness_file, parse_dates=['TIME'])
             thickness_df_all_years = pd.concat([thickness_df_all_years, thickness_df])
@@ -155,6 +153,7 @@ def make_final_df(vib_df, final_csv_path):
             pass2_df.columns = ['PASS_NO_y', 'EXIT_THK_ACT_AVG_y']
             multiplied_df = pd.concat([pass1_df, pass2_df], axis = 1)
             multiplied_merge_df = pd.concat([multiplied_merge_df, multiplied_df], axis = 0)
+        final_df = pd.concat([final_df, multiplied_merge_df], axis = 0)
 
     final_df = final_df.drop(['COIL_NO', 'PASS_NO', 'PASS_NO_y','TIME'], axis = 1)
     final_df = final_df.rename(columns = utils.rename_dict)
