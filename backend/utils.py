@@ -20,3 +20,16 @@ rename_dict = {'EXIT_THK_ACT_AVG' : 'ENTRY_THK_ACT_AVG',
 used_columns = ['ENTRY_THK_ACT_AVG', 'upper_roll_shift_set', 'lower_roll_shift_set', 'bending_DS_set',
                      'LH_tension_set', 'RH_tension_set', 'POR_tension_set', 'POR_tension_N/mm2_set', 'roll_force_set', 'speed_set',
                      'left_cooler_amount', 'right_cooler_amount', 'EXIT_THK_ACT_AVG']
+
+train_columns = ['ENTRY_THK_ACT_AVG',
+                'upper_roll_shift_set',
+                'lower_roll_shift_set',
+                'bending_DS_set',
+                'LH_tension_set',
+                'RH_tension_set',
+                'POR_tension_set',
+                'POR_tension_N/mm2_set',
+                'roll_force_set',
+                'speed_set',
+                'left_cooler_amount',
+                'right_cooler_amount']
