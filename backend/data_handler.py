@@ -129,11 +129,6 @@ def make_final_df(vib_df, final_csv_path):
         for pass_no in pass_list:
            select_df = pd.concat([select_df, vib_df[(vib_df['COIL_NO'] == coil_no) & (vib_df['PASS_NO'] == pass_no)].sample(n=10)])
     
-    for coil_no in coil_no_list:
-        pass_list = vib_df[vib_df['COIL_NO'] == coil_no]['PASS_NO'].unique()
-        for pass_no in pass_list:
-            select_df = pd.concat([select_df, vib_df[(vib_df['COIL_NO'] == coil_no) & (vib_df['PASS_NO'] == pass_no)].sample(n=10)])
-
     sampled_dfs = []
     for coil in coil_no_list:
         sampled_dfs.append(select_df[select_df['COIL_NO'] == coil])
@@ -158,6 +153,10 @@ def make_final_df(vib_df, final_csv_path):
     final_df = final_df.drop(['COIL_NO', 'PASS_NO', 'PASS_NO_y','TIME'], axis = 1)
     final_df = final_df.rename(columns = utils.rename_dict)
     final_df = final_df[utils.used_columns]
-
+    
+    if 'Unnamed: 0' in final_df.columns:
+        final_df = final_df.drop(['Unnamed: 0'], axis=1)
+    
     final_df.to_csv(f'{final_csv_path}/final_df.csv')
+
     return final_df
