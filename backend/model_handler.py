@@ -42,5 +42,5 @@ def predict_value(model_path, input_list, train_columns):
     model = joblib.load(model_file)
     input_list = pd.DataFrame(data = [input_list], columns=train_columns)
     
-    predict = model.predict(input_list)[0]
+    predict = round(model.predict(input_list)[0], 4)
     return predict
