@@ -38,7 +38,7 @@ def home():
 def user():
     return 'Hello, User!'
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/predict', methods=['POST'])
 def predict():  
     params = request.get_json()
     input_list = [float(value) for key, value in params.items()]
