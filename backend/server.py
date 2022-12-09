@@ -20,6 +20,12 @@
 #     return JSONResponse(a)
 
 from flask import Flask,request,jsonify
+import numpy as np
+import model_handler
+import config
+import utils
+
+MODEL_PATH = config.MODEL_PATH
 
 app = Flask(__name__)
 
@@ -32,15 +38,14 @@ def home():
 def user():
     return 'Hello, User!'
 
-@app.route('/test', methods=['GET', 'POST'])
-def test():  
-    # print(request.is_json)
+@app.route('/predict', methods=['GET', 'POST'])
+def predict():  
     params = request.get_json()
-    val1 = params['value1']
-    val2 = params['value2']
-    add = int(val1) + int(val2)
-    print(add)
-    return f'{add}'
+    input_list = [float(value) for key, value in params.items()]
+    input_list = np.array(input_list)
+
+    result = model_handler.predict_value(MODEL_PATH, input_list, utils.train_columns)
+    return f'{result}'
 
 if __name__ == '__main__':
     app.run(debug=True)
