@@ -3,12 +3,12 @@
     <table class="inputTable">
       <thead>
         <tr>
-          <th>Feature 1</th>
-          <th>Feature 2</th>
-          <th>Feature 3</th>
-          <th>Feature 4</th>
-          <th>Feature 5</th>
-          <th>Feature 6</th>
+          <th>코일의 평균 입측 두께</th>
+          <th>upper 롤 이동값</th>
+          <th>lower 롤 이동값</th>
+          <th>밴딩 DS</th>
+          <th>LH tension</th>
+          <th>RH tension</th>
         </tr>
       </thead>
       <tbody>
@@ -67,12 +67,12 @@
     <table class="inputTable">
       <thead>
         <tr>
-          <th>Feature 7</th>
-          <th>Feature 8</th>
-          <th>Feature 9</th>
-          <th>Feature 10</th>
-          <th>Feature 11</th>
-          <th>Feature 12</th>
+          <th>POR tension</th>
+          <th>POR tension (N/mm<sup>2</sup>)</th>
+          <th>롤 힘</th>
+          <th>롤 속도</th>
+          <th>좌 냉각수 유량</th>
+          <th>우 냉각수 유량</th>
         </tr>
       </thead>
       <tbody>
