@@ -11,12 +11,6 @@ conn = db_handler.get_db_connection()
 
 app = Flask(__name__)
 
-@app.route('/')
-@app.route('/home')
-def home():
-    return 'Hello, World!'
-
-
 @app.route('/predict', methods=['POST'])
 def predict():  
     params = request.get_json()
@@ -43,4 +37,4 @@ def show_history():
     return history_info
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8000, debug=True)
