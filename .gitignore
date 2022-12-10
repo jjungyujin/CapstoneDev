@@ -131,3 +131,4 @@ dmypy.json
 # data & etc
 data
 config.py
+.DS_Store
