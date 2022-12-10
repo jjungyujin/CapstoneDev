@@ -16,9 +16,6 @@ app = Flask(__name__)
 def home():
     return 'Hello, World!'
 
-@app.route('/user')
-def user():
-    return 'Hello, User!'
 
 @app.route('/predict', methods=['POST'])
 def predict():  
@@ -38,6 +35,12 @@ def save_historys():
     db_handler.insert_feature_history(conn, feature_history_input_tuple)
     
     return 'Success for save history'
+
+
+@app.route('/show_history', methods=['GET'])
+def show_history():  
+    history_info = db_handler.get_history(conn)
+    return history_info
 
 if __name__ == '__main__':
     app.run(debug=True)
