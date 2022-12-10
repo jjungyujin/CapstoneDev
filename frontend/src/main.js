@@ -3,9 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import VueTabulator from 'vue-tabulator';
 Vue.config.productionTip = false
 
+Vue.use(VueTabulator, {
+  name: 'AwesomeTable',
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
