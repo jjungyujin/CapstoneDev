@@ -6,6 +6,7 @@
 
 <script>
 import { TabulatorComponent } from 'vue-tabulator';
+import axios from 'axios';
 
 export default {
   methods: {},
@@ -73,6 +74,12 @@ export default {
       console.log(this.$refs.mainTable.getInstance().getSelectedData());
       this.$emit('example_data', this.FEATURE_values);
     }
+  },
+  mounted() {
+    let path = "http://localhost:5000/show_history";
+    axios.get(path).then((res) => {
+      console.log(res.data)
+    })
   }
 };
 </script>
