@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted() {
-    let path = "http://localhost:5000/show_history";
+    let path = "http://localhost:8000/show_history";
     axios.get(path).then((res) => {
       console.log(res.data)
     })
