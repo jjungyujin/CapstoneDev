@@ -1,31 +1,13 @@
-# from typing import Optional
-# from fastapi import FastAPI
-# from starlette.responses import JSONResponse
-
-# app = FastAPI()
-
-# @app.get("/")
-# def read_root():
-#     return {"Hello": "World"}
-
-
-# @app.get("/predict/{predict_values}")
-# def read_item(predict_values: int, params: Optional[str] = None): # Optional는 Query
-#     return {"predict_values": predict_values, "param": params}
-
-# @app.post("/test")
-# def read_item(value : Item):
-#     print(value)
-#     a = dict(value)
-#     return JSONResponse(a)
-
 from flask import Flask,request,jsonify
 import numpy as np
 import model_handler
+import db_handler
+
 import config
 import utils
 
 MODEL_PATH = config.MODEL_PATH
+conn = db_handler.get_db_connection()
 
 app = Flask(__name__)
 
@@ -46,6 +28,16 @@ def predict():
 
     result = model_handler.predict_value(MODEL_PATH, input_list, utils.train_columns)
     return f'{result}'
+
+@app.route('/save_history', methods=['POST'])
+def save_historys():  
+    params = request.get_json()
+    hitory_input_tuple, feature_history_input_tuple = db_handler.split_data(params)
+    print(feature_history_input_tuple)
+    db_handler.insert_history(conn, hitory_input_tuple)
+    db_handler.insert_feature_history(conn, feature_history_input_tuple)
+    
+    return 'Success for save history'
 
 if __name__ == '__main__':
     app.run(debug=True)
