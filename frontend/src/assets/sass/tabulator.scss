@@ -1,0 +1,70 @@
+.tabulator {
+  max-height: 50vh;
+  height: fit-content;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 0.8rem;
+
+  .tabulator-header .tabulator-col .tabulator-col-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    padding: 10px !important;
+  }
+
+  .tabulator-header,
+  .tabulator-col-content {
+    font-size: 1rem;
+    background: lightblue;
+    text-align: center;
+  }
+
+  .tabulator-tableHolder {
+    text-align: center;
+  }
+
+  .tabulator-cell {
+    height: fit-content !important;
+    text-align: center;
+    white-space: pre-wrap;
+  }
+
+  .tabulator-cell select {
+    padding: 5px 20px;
+  }
+  .tabulator-cell textarea {
+    width: 100%;
+    padding: 10px 5px;
+  }
+
+  .tabulator-cell input {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 0;
+    border: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &::-webkit-file-upload-button {
+      display: none;
+    }
+    &::-webkit-file-upload-button + span {
+      background: black;
+    }
+  }
+
+  .tabulator-cell input[type='file']:hover {
+    border-radius: 5px;
+    background: rgb(202, 202, 202);
+  }
+}
