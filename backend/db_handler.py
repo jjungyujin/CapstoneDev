@@ -105,13 +105,17 @@ def insert_feature_history(conn, value_tuple):
         conn.commit()
 
 
-# basic_info table 데이터 get
-def get_basic_info_table(conn):
+def get_history(conn):
     with conn.cursor() as cursor:
-      model_pkl = "select * from model_info"
-      cursor.execute(model_pkl)
-      model_pkl_info = cursor.fetchall()
-    return model_pkl_info
+      sql = '''
+               SELECT * 
+               FROM history, history_features
+               WHERE history.HISTORY_ID = history_features.HISTORY_ID
+      '''
+
+      cursor.execute(sql)
+      history_info = cursor.fetchall()
+    return history_info[0]
 
 
 def split_data(params):
