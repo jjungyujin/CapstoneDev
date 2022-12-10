@@ -11,12 +11,6 @@ conn = db_handler.get_db_connection()
 
 app = Flask(__name__)
 
-@app.route('/')
-@app.route('/home')
-def home():
-    return 'Hello, World!'
-
-
 @app.route('/predict', methods=['POST'])
 def predict():  
     params = request.get_json()
