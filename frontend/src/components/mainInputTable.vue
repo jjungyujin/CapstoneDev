@@ -15,6 +15,7 @@
               type="number"
               step="0.001"
               v-bind:id="column.id"
+              v-on:click="hidePredictResult()"
               placeholder="값을 입력해주세요"
               class="main-input"
             />
@@ -37,6 +38,7 @@
               type="number"
               step="0.001"
               v-bind:id="column.id"
+              v-on:click="hidePredictResult()"
               placeholder="값을 입력해주세요"
               class="main-input"
             />
@@ -52,11 +54,14 @@
         예측
       </div>
     </div>
+    <div id="predict-result" v-if="isShow === 1">
+      예측 결과 : {{ this.result }}
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "mainInputTable",
@@ -78,14 +83,20 @@ export default {
           inputValueObj[inputList[i].id] = inputList[i].value;
         }
       }
-      axios.post(path, inputValueObj).then(res => {
-        this.result = res.data.result;
-      });
-      console.log(this.result);
+      // axios.post(path, inputValueObj).then(res => {
+      //   this.result = res.data;
+      // });
+      this.result = 12345.6789;
+      this.isShow = 1;
+    },
+    hidePredictResult() {
+      this.isShow = 0;
     }
   },
   data() {
     return {
+      result: "",
+      isShow: 0,
       fstRow: [
         {
           name: "코일의 평균 입측 두께",
@@ -137,8 +148,7 @@ export default {
           name: "우 냉각수 유량",
           id: "FEATURE_12"
         }
-      ],
-      result: ""
+      ]
     };
   }
 };
