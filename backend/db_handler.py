@@ -125,7 +125,7 @@ def split_data(params):
         if key in utils.hitory_columns:
             if key == 'DATE':
                 hitory_input_list.append(datetime.datetime.strptime(value, '%y-%m-%d %H:%M'))
-            elif key == 'WORKER_ID':
+            elif key == 'WORKER_NAME':
                 hitory_input_list.append(value)
             elif key == 'COIL_ID':
                 hitory_input_list.append(value)
