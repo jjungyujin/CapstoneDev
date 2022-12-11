@@ -12,8 +12,8 @@
             <input
               :value="FEATURE_values[j + 6*i - 7]"
               type="text"
-              class="main-searchbox"
-              disabled
+              class="history-feature-value-box"
+              readonly
             />
           </td>
         </tr>
