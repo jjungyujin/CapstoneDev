@@ -1,4 +1,5 @@
 from flask import Flask,request,jsonify
+from flask_cors import CORS
 import numpy as np
 import model_handler
 import db_handler
@@ -10,6 +11,7 @@ MODEL_PATH = config.MODEL_PATH
 conn = db_handler.get_db_connection()
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/predict', methods=['POST'])
 def predict():  
