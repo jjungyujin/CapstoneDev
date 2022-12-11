@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "mainInputTable",
   methods: {
@@ -67,14 +69,19 @@ export default {
     },
     getInputValues() {
       const inputList = document.getElementsByClassName("main-input");
-      let inputValueList = [];
+      let path = "http://localhost:8000/predict";
+      let inputValueObj = {};
       for (let i = 0; i < inputList.length; i++) {
         if (inputList[i].value === "") {
           break;
         } else {
-          inputValueList.push(inputList[i].value);
+          inputValueObj[inputList[i].id] = inputList[i].value;
         }
       }
+      axios.post(path, inputValueObj).then(res => {
+        this.result = res.data.result;
+      });
+      console.log(this.result);
     }
   },
   data() {
@@ -130,7 +137,8 @@ export default {
           name: "우 냉각수 유량",
           id: "FEATURE_12"
         }
-      ]
+      ],
+      result: ""
     };
   }
 };
