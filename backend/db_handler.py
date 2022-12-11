@@ -126,14 +126,14 @@ def split_data(params):
             if key == 'DATE':
                 hitory_input_list.append(datetime.datetime.strptime(value, '%y-%m-%d %H:%M'))
             elif key == 'WORKER_ID':
-                hitory_input_list.append(int(value))
+                hitory_input_list.append(value)
             elif key == 'COIL_ID':
-                hitory_input_list.append(int(value))
+                hitory_input_list.append(value)
             elif key == 'CRM_ID':
-                hitory_input_list.append(int(value))
+                hitory_input_list.append(value)
             else:
-                hitory_input_list.append(float(value))
+                hitory_input_list.append(round(float(value),4))
         else:
-            feature_history_input_list.append(float(value))
+            feature_history_input_list.append(round(float(value), 4))
     
     return tuple(hitory_input_list), tuple(feature_history_input_list)
