@@ -115,7 +115,7 @@ def get_history(conn):
 
       cursor.execute(sql)
       history_info = cursor.fetchall()
-    return history_info[0]
+    return history_info
 
 
 def split_data(params):
