@@ -9,14 +9,9 @@ import { TabulatorComponent } from 'vue-tabulator';
 import axios from 'axios';
 
 export default {
-  methods: {},
   data() {
     return {
-      data_main_table: [
-        // {id: 0, 날짜: '22/11/07 09:30', 작업자명: '서용득', 코일번호: '2HM36111', 압연기번호: '2CRM', '예측 두께': 0.3911},
-        // {id: 1, 날짜: '22/11/08 09:30', 작업자명: '조성우', 코일번호: '2HM36111', 압연기번호: '2CRM', '예측 두께': 1.7825},
-        // {id: 2, 날짜: '22/11/09 09:30', 작업자명: '정유진', 코일번호: '2HM36111', 압연기번호: '2CRM', '예측 두께': 0.9981},
-      ],
+      data_main_table: [],
       options_main_table: {
         resizableColumns:false,
         height:"50vh",
@@ -50,20 +45,6 @@ export default {
           }
         ],
       },
-      FEATURE_values: [
-        11,
-        22,
-        33,
-        44,
-        55,
-        66,
-        77,
-        88,
-        99,
-        1010,
-        1111,
-        1212
-      ],
       history_data: {}
     };
   },
@@ -88,7 +69,7 @@ export default {
       FEATURE_values.push(clicked_row.FEATURE_11);
       FEATURE_values.push(clicked_row.FEATURE_12);
 
-      this.$emit('example_data', FEATURE_values);
+      this.$emit('clicked_features', FEATURE_values);
     },
     formatDate(date_str) {
       let date_ = new Date(date_str);

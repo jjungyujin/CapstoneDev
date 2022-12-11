@@ -4,13 +4,13 @@
       <div class="sb-sidenav-menu">
         <div class="nav">
           <div class="sb-sidenav-menu-heading">Menu</div>
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" @click="toPredicton">
             <div class="sb-nav-link-icon">
               <i class="fas fa-tachometer-alt"></i>
             </div>
             Prediction
           </a>
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" @click="toHistory">
             <div class="sb-nav-link-icon">
               <i class="fas fa-tachometer-alt"></i>
             </div>
@@ -21,3 +21,18 @@
     </nav>
   </div>
 </template>
+
+<script>
+
+export default {
+  name: "mainNav",
+  methods: {
+    toPredicton() {
+      this.$router.push('/');
+    },
+    toHistory() {
+      this.$router.push('/history');
+    }
+  }
+}
+</script>
