@@ -87,7 +87,7 @@ def create_tables(conn):
 def insert_history(conn, value_tuple):
     with conn.cursor() as cursor:
         sql = '''
-              INSERT INTO history (DATE, WORKER_ID, COIL_ID, CRM_ID, THICKNESS_PRED)
+              INSERT INTO history (DATE, WORKER_NAME, COIL_ID, CRM_ID, THICKNESS_PRED)
                 VALUES (%s, %s, %s, %s, %s)
         '''
         cursor.execute(sql, value_tuple)
