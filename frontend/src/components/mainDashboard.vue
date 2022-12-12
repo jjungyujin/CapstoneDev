@@ -28,12 +28,12 @@
           <option value="3CRM">3CRM</option>
         </select>
         <label for="coilNum">코일 번호 :</label>
-        <select id="coilNum" class="basic-info-selector" name="coilNum">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3" selected>3</option>
-          <option value="4">4</option>
-        </select>
+        <input
+          type="text"
+          v-on:click="hidePredictResult()"
+          placeholder="값을 입력해주세요"
+          class="dashboard-input"
+        />
       </div>
     </div>
   </div>
