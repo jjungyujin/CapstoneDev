@@ -23,6 +23,13 @@
   border-radius: 0.25rem;
 }
 
+.dashboard-input {
+  padding: 0.25rem 2.25rem 0.25rem 1rem;
+  color: #212529;
+  border: 1px solid #001a41;
+  border-radius: 0.25rem;
+}
+
 .inputTable {
   margin-bottom: 30px;
 }
