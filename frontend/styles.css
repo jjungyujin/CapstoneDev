@@ -67,14 +67,21 @@ td {
   width: 200px;
 }
 
+.history-table-button {
+  margin-left: 928px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 0px;
+  width: 300px;
+}
+
 .history-feature-value-box {
   border: 1px solid transparent;
   outline: none;
 }
 
-#reset-button,
-#predict-button,
-#save-button {
+.buttons {
   width: 70px;
   border: 1px solid #001a41;
   border-radius: 0.25rem;
@@ -83,7 +90,23 @@ td {
   padding: 5px 10px;
 }
 
+#predict-button-2 {
+  width: 150px;
+  border: 1px solid #001a41;
+  border-radius: 0.25rem;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 10px;
+}
+
 .buttons:hover {
+  background-color: #001a41;
+  color: #f8f9fa;
+  border-color: #001a41;
+  cursor: pointer;
+}
+
+#predict-button-2:hover {
   background-color: #001a41;
   color: #f8f9fa;
   border-color: #001a41;
