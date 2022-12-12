@@ -62,6 +62,7 @@
                   v-on:click="hidePredictResult()"
                   placeholder="값을 입력해주세요"
                   class="main-input"
+                  :value="init_FEATUREs_first[index]"
                 />
               </td>
             </tr>
@@ -85,6 +86,7 @@
                   v-on:click="hidePredictResult()"
                   placeholder="값을 입력해주세요"
                   class="main-input"
+                  :value="init_FEATUREs_second[index]"
                 />
               </td>
             </tr>
@@ -147,7 +149,7 @@ export default {
       const workerName = document.getElementById("workerName");
       const rollingMillNum = document.getElementById("rollingMillNum");
       const coilNum = document.getElementById("coilNum");
-      this.historyObj.DATE = new Date();
+      this.historyObj.DATE = new Date().toLocaleString('en-GB');
       this.historyObj.WORKER_NAME =
         workerName.options[workerName.selectedIndex].value;
       this.historyObj.CRM_ID =
@@ -156,8 +158,44 @@ export default {
       axios.post(path, this.historyObj);
     }
   },
+  created() {
+    console.log(this.$route)
+    this.$router.push({
+      name: "Home",
+      query: {
+        FEATURE_1: "",
+        FEATURE_2: "",
+        FEATURE_3: "",
+        FEATURE_4: "",
+        FEATURE_5: "",
+        FEATURE_6: "",
+        FEATURE_7: "",
+        FEATURE_8: "",
+        FEATURE_9: "",
+        FEATURE_10: "",
+        FEATURE_11: "",
+        FEATURE_12: ""
+      }
+    })
+  },
   data() {
     return {
+      init_FEATUREs_first: [
+        this.$route.query.FEATURE_1,
+        this.$route.query.FEATURE_2,
+        this.$route.query.FEATURE_3,
+        this.$route.query.FEATURE_4,
+        this.$route.query.FEATURE_5,
+        this.$route.query.FEATURE_6,
+        ],
+      init_FEATUREs_second: [
+        this.$route.query.FEATURE_7,
+        this.$route.query.FEATURE_8,
+        this.$route.query.FEATURE_9,
+        this.$route.query.FEATURE_10,
+        this.$route.query.FEATURE_11,
+        this.$route.query.FEATURE_12,
+        ],
       result: "",
       isShow: 0,
       historyObj: {},
