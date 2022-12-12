@@ -1,7 +1,7 @@
 .tabulator {
   max-height: 50vh;
   height: fit-content;
-  border: 1px solid black;
+  border: 1px solid #171745;
   border-radius: 5px;
   font-size: 0.8rem;
 
@@ -18,7 +18,8 @@
   .tabulator-header,
   .tabulator-col-content {
     font-size: 1rem;
-    background: lightblue;
+    background: #171745;
+    color: white;
     text-align: center;
   }
 
