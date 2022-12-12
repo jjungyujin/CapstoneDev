@@ -140,6 +140,7 @@ export default {
       for (let i = 0; i < inputList.length; i++) {
         inputList[i].value = null;
       }
+      hidePredictResult();
     },
     getInputValues() {
       const inputList = document.getElementsByClassName("main-input");
