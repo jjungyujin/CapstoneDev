@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid px-4">
     <div>
-      <h1 class="mt-4">Prediction</h1>
+      <h1 class="mt-4" style="font-family:Carter One;color:#171745">Prediction</h1>
       <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">
           입력한 파라미터로 압연 공정을 진행했을 때 나오는 코일의 두께를
@@ -45,13 +45,11 @@
       </div>
       <div class="card-body">
         <table class="inputTable">
-          <thead>
             <tr>
-              <th v-for="(column, index) in fstRow" :key="index">
+              <td class="td-custom" v-for="(column, index) in fstRow" :key="index">
                 {{ column.name }}
-              </th>
+              </td>
             </tr>
-          </thead>
           <tbody>
             <tr>
               <td v-for="(column, index) in fstRow" :key="index">
@@ -69,13 +67,11 @@
           </tbody>
         </table>
         <table class="inputTable">
-          <thead>
             <tr>
-              <th v-for="(column, index) in scdRow" :key="index">
+              <td class="td-custom" v-for="(column, index) in scdRow" :key="index">
                 {{ column.name }}
-              </th>
+              </td>
             </tr>
-          </thead>
           <tbody>
             <tr>
               <td v-for="(column, index) in scdRow" :key="index">
