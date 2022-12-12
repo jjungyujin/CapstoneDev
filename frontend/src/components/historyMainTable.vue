@@ -15,7 +15,6 @@ export default {
       options_main_table: {
         resizableColumns:false,
         height:"50vh",
-        movableRows: true,
         selectable: 1,
         columns: [
           {
@@ -53,7 +52,7 @@ export default {
   },
   methods: {
     showFeatures() {
-      let clicked_row_num = this.$refs.mainTable.getInstance().getSelectedData()[0].id - 1;
+      let clicked_row_num = this.$refs.mainTable.getInstance().getSelectedData()[0].id;
       let clicked_row = this.history_data[clicked_row_num];
       let FEATURE_values = [];
       FEATURE_values.push(clicked_row.FEATURE_1);
@@ -83,7 +82,7 @@ export default {
       let hd = this.history_data;
       for (let i=0;i<hd.length;i++){
         let row = {
-                    id: hd[i].HISTORY_ID,
+                    id: i,
                     날짜: this.formatDate(hd[i].DATE), 
                     작업자명: hd[i].WORKER_NAME, 
                     코일번호: hd[i].COIL_ID, 

@@ -62,7 +62,7 @@
                   v-on:click="hidePredictResult()"
                   placeholder="값을 입력해주세요"
                   class="main-input"
-                  :value="init_FEATUREs_first[index]"
+                  v-model="init_FEATUREs_first[index]"
                 />
               </td>
             </tr>
@@ -86,7 +86,7 @@
                   v-on:click="hidePredictResult()"
                   placeholder="값을 입력해주세요"
                   class="main-input"
-                  :value="init_FEATUREs_second[index]"
+                  v-model="init_FEATUREs_second[index]"
                 />
               </td>
             </tr>
