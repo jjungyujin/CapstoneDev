@@ -248,7 +248,7 @@ export default {
           id: "FEATURE_7"
         },
         {
-          name: "POR tension (N/mm2)",
+          name: "POR tension (N/mm²)",
           id: "FEATURE_8"
         },
         {
