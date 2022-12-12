@@ -3,7 +3,7 @@
     <table v-for ="i in 2" :key="i" class="inputTable">
       <thead>
         <tr>
-          <th v-for="j in 6" :key="j">{{FEATURE_names[j + 6*i - 7]}}</th>
+          <td class="td-custom" v-for="j in 6" :key="j">{{FEATURE_names[j + 6*i - 7]}}</td>
         </tr>
       </thead>
       <tbody>
