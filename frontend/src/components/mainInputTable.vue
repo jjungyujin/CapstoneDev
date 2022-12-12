@@ -93,29 +93,47 @@
           </tbody>
         </table>
         <div class="main-input-table-button">
-          <div id="reset-button" v-on:click="resetInputValues()">
+          <div
+            id="reset-button"
+            class="buttons"
+            v-on:click="resetInputValues()"
+          >
             초기화
           </div>
-          <div id="predict-button" v-on:click="getInputValues()">
+          <div
+            id="predict-button"
+            class="buttons"
+            v-on:click="getInputValues()"
+          >
             예측
           </div>
         </div>
         <div v-if="isShow === 1">
           <div id="predict-result">예측 결과 : {{ this.result }}</div>
-          <div id="save-button" v-on:click="saveHistory()">
+          <div id="save-button" class="buttons" v-on:click="saveHistory()">
             저장
           </div>
         </div>
       </div>
     </div>
+    <modal
+      :show="showModal"
+      @close="showModal = false"
+      @moveHistory="moveHistory()"
+    >
+    </modal>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Modal from "../components/Modal.vue";
 
 export default {
   name: "mainInputTable",
+  components: {
+    Modal
+  },
   methods: {
     resetInputValues() {
       const inputList = document.getElementsByClassName("main-input");
@@ -149,17 +167,20 @@ export default {
       const workerName = document.getElementById("workerName");
       const rollingMillNum = document.getElementById("rollingMillNum");
       const coilNum = document.getElementById("coilNum");
-      this.historyObj.DATE = new Date().toLocaleString('en-GB');
+      this.historyObj.DATE = new Date().toLocaleString("en-GB");
       this.historyObj.WORKER_NAME =
         workerName.options[workerName.selectedIndex].value;
       this.historyObj.CRM_ID =
         rollingMillNum.options[rollingMillNum.selectedIndex].value;
       this.historyObj.COIL_ID = coilNum.value;
       axios.post(path, this.historyObj);
+      this.showModal = true;
+    },
+    moveHistory() {
+      this.$router.push("/history");
     }
   },
   created() {
-    console.log(this.$route)
     this.$router.push({
       name: "Home",
       query: {
@@ -176,26 +197,27 @@ export default {
         FEATURE_11: "",
         FEATURE_12: ""
       }
-    })
+    });
   },
   data() {
     return {
+      showModal: false,
       init_FEATUREs_first: [
         this.$route.query.FEATURE_1,
         this.$route.query.FEATURE_2,
         this.$route.query.FEATURE_3,
         this.$route.query.FEATURE_4,
         this.$route.query.FEATURE_5,
-        this.$route.query.FEATURE_6,
-        ],
+        this.$route.query.FEATURE_6
+      ],
       init_FEATUREs_second: [
         this.$route.query.FEATURE_7,
         this.$route.query.FEATURE_8,
         this.$route.query.FEATURE_9,
         this.$route.query.FEATURE_10,
         this.$route.query.FEATURE_11,
-        this.$route.query.FEATURE_12,
-        ],
+        this.$route.query.FEATURE_12
+      ],
       result: "",
       isShow: 0,
       historyObj: {},
