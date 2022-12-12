@@ -15,6 +15,7 @@
               type="number"
               step="0.001"
               v-bind:id="column.id"
+              v-on:click="hidePredictResult()"
               placeholder="값을 입력해주세요"
               class="main-input"
             />
@@ -37,6 +38,7 @@
               type="number"
               step="0.001"
               v-bind:id="column.id"
+              v-on:click="hidePredictResult()"
               placeholder="값을 입력해주세요"
               class="main-input"
             />
@@ -52,11 +54,17 @@
         예측
       </div>
     </div>
+    <div v-if="isShow === 1">
+      <div id="predict-result">예측 결과 : {{ this.result }}</div>
+      <div id="save-button" v-on:click="saveHistory()">
+        저장
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "mainInputTable",
@@ -76,16 +84,32 @@ export default {
           break;
         } else {
           inputValueObj[inputList[i].id] = inputList[i].value;
+          this.historyObj[inputList[i].id] = inputList[i].value;
         }
       }
       axios.post(path, inputValueObj).then(res => {
-        this.result = res.data.result;
+        this.result = res.data;
+        this.historyObj.THICKNESS_PRED = res.data;
       });
-      console.log(this.result);
+      this.isShow = 1;
+    },
+    hidePredictResult() {
+      this.isShow = 0;
+    },
+    saveHistory() {
+      console.log(this.historyObj);
     }
   },
   data() {
     return {
+      result: "",
+      isShow: 0,
+      historyObj: {
+        DATE: "22-12-11 14:50",
+        WORKER_NAME: "홍길동",
+        COIL_ID: "11",
+        CRM_ID: "13"
+      },
       fstRow: [
         {
           name: "코일의 평균 입측 두께",
@@ -137,8 +161,7 @@ export default {
           name: "우 냉각수 유량",
           id: "FEATURE_12"
         }
-      ],
-      result: ""
+      ]
     };
   }
 };

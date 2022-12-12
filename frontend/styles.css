@@ -58,19 +58,34 @@ td {
 }
 
 #reset-button,
-#predict-button {
+#predict-button,
+#save-button {
   width: 60px;
   border: 1px solid #001a41;
   border-radius: 0.25rem;
   display: inline-block;
+  text-align: center;
 }
 
 #reset-button:hover,
-#predict-button:hover {
+#predict-button:hover,
+#save-button:hover {
   background-color: #001a41;
   color: #f8f9fa;
   border-color: #001a41;
   cursor: pointer;
+}
+
+#predict-result {
+  display: inline-block;
+  width: 400px;
+  margin-top: 40px;
+  margin-left: 400px;
+  margin-right: 40px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  border-bottom: 3px solid #2969c8;
 }
 
 :root {
