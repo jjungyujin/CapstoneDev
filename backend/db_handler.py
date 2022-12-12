@@ -2,7 +2,7 @@ from typing import final
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text, func
-from sqlalchemy.orm import sessionmaker,relationship
+from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, Float, DateTime
 import pymysql
@@ -20,14 +20,15 @@ DB_PASSWORD = config.DB_PASSWORD
 
 
 def get_db_connection():
-  conn = pymysql.connect(host=DB_ADDRESS, port=3306, user=DB_USER,password=DB_PASSWORD, 
-                         db='psat_capstone', charset='utf8', cursorclass=pymysql.cursors.DictCursor)
-  return conn
+    conn = pymysql.connect(host=DB_ADDRESS, port=3306, user=DB_USER, password=DB_PASSWORD,
+                           db='psat_capstone', charset='utf8', cursorclass=pymysql.cursors.DictCursor)
+    return conn
 
 
 def create_database():
     # TODO : 데이터베이스를 생성합니다.
-    conn = pymysql.connect(host=DB_ADDRESS, port=3306, user=DB_USER,password=DB_PASSWORD)
+    conn = pymysql.connect(host=DB_ADDRESS, port=3306,
+                           user=DB_USER, password=DB_PASSWORD)
     cursor = conn.cursor()
     sql = "CREATE DATABASE psat_capstone;"
     cursor.execute(sql)
@@ -37,7 +38,7 @@ def create_database():
 
 
 def _create_history_table(conn):
-      with conn.cursor() as cursor:
+    with conn.cursor() as cursor:
         sql = '''
             CREATE TABLE `history` (
                 `HISTORY_ID` int() NOT NULL AUTO_INCREMENT,
@@ -54,7 +55,7 @@ def _create_history_table(conn):
 
 
 def _create_feature_history_table(conn):
-      with conn.cursor() as cursor:
+    with conn.cursor() as cursor:
         sql = '''
             CREATE TABLE `history_features` (
                 `HISTORY_ID` int(11) NOT NULL,
@@ -92,23 +93,23 @@ def insert_history(conn, value_dict):
 
 
 def insert_feature_history(conn, value_dict):
-      with conn.cursor() as cursor:
+    with conn.cursor() as cursor:
         sql = "INSERT INTO history_features (`FEATURE_1`, `FEATURE_2`, `FEATURE_3`, `FEATURE_4`, `FEATURE_5`, `FEATURE_6`,`FEATURE_7`, `FEATURE_8`, `FEATURE_9`, `FEATURE_10`, `FEATURE_11`, `FEATURE_12`) VALUES ('%(FEATURE_1)s', '%(FEATURE_2)s', %(FEATURE_3)s, %(FEATURE_4)s, %(FEATURE_5)s, %(FEATURE_6)s, %(FEATURE_7)s, %(FEATURE_8)s, %(FEATURE_9)s, %(FEATURE_10)s,  %(FEATURE_11)s, %(FEATURE_12)s)"
-        
+
         cursor.execute(sql, value_dict)
         conn.commit()
 
 
 def get_history(conn):
     with conn.cursor() as cursor:
-      sql = '''
+        sql = '''
                SELECT * 
                FROM history, history_features
                WHERE history.HISTORY_ID = history_features.HISTORY_ID
       '''
 
-      cursor.execute(sql)
-      history_info = cursor.fetchall()
+        cursor.execute(sql)
+        history_info = cursor.fetchall()
     return history_info
 
 
@@ -118,7 +119,8 @@ def split_data(params):
     for key, value in params.items():
         if key in utils.hitory_columns:
             if key == 'DATE':
-                hitory_input_dict[key] = datetime.datetime.strptime(value, '%y-%m-%d %H:%M')
+                hitory_input_dict[key] = datetime.datetime.strptime(
+                    value, '%d/%m/%Y, %H:%M:%S')
             elif key == 'WORKER_NAME':
                 hitory_input_dict[key] = value
             elif key == 'COIL_ID':
@@ -126,8 +128,8 @@ def split_data(params):
             elif key == 'CRM_ID':
                 hitory_input_dict[key] = value
             else:
-                hitory_input_dict[key] = round(float(value),4)
+                hitory_input_dict[key] = round(float(value), 4)
         else:
             feature_history_input_dict[key] = round(float(value), 4)
-    
+
     return hitory_input_dict, feature_history_input_dict
