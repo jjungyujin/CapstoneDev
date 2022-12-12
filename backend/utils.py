@@ -34,6 +34,6 @@ train_columns = ['ENTRY_THK_ACT_AVG',
                 'left_cooler_amount',
                 'right_cooler_amount']
 
-hitory_columns = ['DATE', 'WORKER_ID', 'COIL_ID', 'CRM_ID', 'THICKNESS_PRED']
+hitory_columns = ['DATE', 'WORKER_NAME', 'COIL_ID', 'CRM_ID', 'THICKNESS_PRED']
 feature_hitory_columns = ['FEATURE_1', 'FEATURE_2', 'FEATURE_3', 'FEATURE_4', 'FEATURE_5', 'FEATURE_6',
                           'FEATURE_7', 'FEATURE_8', 'FEATURE_9', 'FEATURE_10', 'FEATURE_11', 'FEATURE_12']

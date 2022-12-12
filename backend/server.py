@@ -25,10 +25,9 @@ def predict():
 @app.route('/save_history', methods=['POST'])
 def save_historys():  
     params = request.get_json()
-    hitory_input_tuple, feature_history_input_tuple = db_handler.split_data(params)
-    print(feature_history_input_tuple)
-    db_handler.insert_history(conn, hitory_input_tuple)
-    db_handler.insert_feature_history(conn, feature_history_input_tuple)
+    hitory_input_dict, feature_history_input_dict = db_handler.split_data(params)
+    db_handler.insert_history(conn, hitory_input_dict)
+    db_handler.insert_feature_history(conn, feature_history_input_dict)
     
     return 'Success for save history'
 
