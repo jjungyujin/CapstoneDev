@@ -54,8 +54,11 @@
         예측
       </div>
     </div>
-    <div id="predict-result" v-if="isShow === 1">
-      예측 결과 : {{ this.result }}
+    <div v-if="isShow === 1">
+      <div id="predict-result">예측 결과 : {{ this.result }}</div>
+      <div id="save-button" v-on:click="saveHistory()">
+        저장
+      </div>
     </div>
   </div>
 </template>
@@ -81,22 +84,32 @@ export default {
           break;
         } else {
           inputValueObj[inputList[i].id] = inputList[i].value;
+          this.historyObj[inputList[i].id] = inputList[i].value;
         }
       }
-      // axios.post(path, inputValueObj).then(res => {
-      //   this.result = res.data;
-      // });
-      this.result = 12345.6789;
+      axios.post(path, inputValueObj).then(res => {
+        this.result = res.data;
+        this.historyObj.THICKNESS_PRED = res.data;
+      });
       this.isShow = 1;
     },
     hidePredictResult() {
       this.isShow = 0;
+    },
+    saveHistory() {
+      console.log(this.historyObj);
     }
   },
   data() {
     return {
       result: "",
       isShow: 0,
+      historyObj: {
+        DATE: "22-12-11 14:50",
+        WORKER_NAME: "홍길동",
+        COIL_ID: "11",
+        CRM_ID: "13"
+      },
       fstRow: [
         {
           name: "코일의 평균 입측 두께",
