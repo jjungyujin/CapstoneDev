@@ -11,10 +11,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
-  font-family: 'IBM Plex Sans KR';
+  font-family: "IBM Plex Sans KR";
 }
 
 .basic-info-selector {
@@ -83,9 +83,7 @@ td {
   padding: 5px 10px;
 }
 
-#reset-button:hover,
-#predict-button:hover,
-#save-button:hover {
+.buttons:hover {
   background-color: #001a41;
   color: #f8f9fa;
   border-color: #001a41;
@@ -4373,7 +4371,7 @@ fieldset:disabled .btn {
 }
 
 nav {
-  background-color: #4E2535;
+  background-color: #4e2535;
 }
 
 .nav {
@@ -4390,7 +4388,7 @@ nav {
   cursor: pointer;
   color: #0d6efd;
   text-decoration: none;
-  font-family: 'Carter One';
+  font-family: "Carter One";
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
@@ -4506,7 +4504,7 @@ nav {
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
-  font-family: 'Carter One';
+  font-family: "Carter One";
 }
 .navbar-nav {
   display: flex;
@@ -12037,7 +12035,7 @@ body {
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
-  font-family: 'Carter One';
+  font-family: "Carter One";
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link {
   display: flex;
@@ -12294,5 +12292,5 @@ body {
 }
 
 .bg-custom {
-  background-color: #F4ECFF;
+  background-color: #f4ecff;
 }
