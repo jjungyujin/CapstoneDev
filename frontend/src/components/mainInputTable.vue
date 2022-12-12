@@ -136,11 +136,9 @@ export default {
   },
   methods: {
     resetInputValues() {
-      const inputList = document.getElementsByClassName("main-input");
-      for (let i = 0; i < inputList.length; i++) {
-        inputList[i].value = null;
-      }
-      hidePredictResult();
+      this.init_FEATUREs_first = ["","","","","",""];
+      this.init_FEATUREs_second = ["","","","","",""];
+      this.hidePredictResult();
     },
     getInputValues() {
       const inputList = document.getElementsByClassName("main-input");
