@@ -147,6 +147,7 @@ export default {
       const workerName = document.getElementById("workerName");
       const rollingMillNum = document.getElementById("rollingMillNum");
       const coilNum = document.getElementById("coilNum");
+      this.historyObj.DATE = new Date();
       this.historyObj.WORKER_NAME =
         workerName.options[workerName.selectedIndex].value;
       this.historyObj.CRM_ID =
