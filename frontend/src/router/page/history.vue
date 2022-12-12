@@ -66,8 +66,8 @@ export default {
             <historyFeatureTable 
               :FEATURE_values="clicked_features"
             />
-            <div class="main-input-table-button">
-              <div id="predict-button" style="width:130px" @click="sendFeatures">
+            <div class="history-table-button">
+              <div id="predict-button-2" @click="sendFeatures">
                 해당 기록으로 예측
               </div>
             </div>
