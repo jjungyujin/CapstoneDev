@@ -84,24 +84,18 @@ def create_tables(conn):
     conn.commit()
 
 
-def insert_history(conn, value_tuple):
+def insert_history(conn, value_dict):
     with conn.cursor() as cursor:
-        sql = '''
-              INSERT INTO history (DATE, WORKER_NAME, COIL_ID, CRM_ID, THICKNESS_PRED)
-                VALUES (%s, %s, %s, %s, %s)
-        '''
-        cursor.execute(sql, value_tuple)
+        sql = "INSERT INTO history (`DATE`, `WORKER_NAME`, `COIL_ID`, `CRM_ID`, `THICKNESS_PRED`) VALUES (%(DATE)s, %(WORKER_NAME)s, %(COIL_ID)s, %(CRM_ID)s, %(THICKNESS_PRED)s)"
+        cursor.execute(sql, value_dict)
         conn.commit()
 
 
-def insert_feature_history(conn, value_tuple):
+def insert_feature_history(conn, value_dict):
       with conn.cursor() as cursor:
-        sql = '''
-              INSERT INTO history_features (FEATURE_1, FEATURE_2, FEATURE_3, FEATURE_4, FEATURE_5, FEATURE_6, 
-                                            FEATURE_7, FEATURE_8, FEATURE_9, FEATURE_10, FEATURE_11, FEATURE_12)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,  %s, %s)
-        '''
-        cursor.execute(sql, value_tuple)
+        sql = "INSERT INTO history_features (`FEATURE_1`, `FEATURE_2`, `FEATURE_3`, `FEATURE_4`, `FEATURE_5`, `FEATURE_6`,`FEATURE_7`, `FEATURE_8`, `FEATURE_9`, `FEATURE_10`, `FEATURE_11`, `FEATURE_12`) VALUES ('%(FEATURE_1)s', '%(FEATURE_2)s', %(FEATURE_3)s, %(FEATURE_4)s, %(FEATURE_5)s, %(FEATURE_6)s, %(FEATURE_7)s, %(FEATURE_8)s, %(FEATURE_9)s, %(FEATURE_10)s,  %(FEATURE_11)s, %(FEATURE_12)s)"
+        
+        cursor.execute(sql, value_dict)
         conn.commit()
 
 
@@ -119,21 +113,21 @@ def get_history(conn):
 
 
 def split_data(params):
-    hitory_input_list = []
-    feature_history_input_list = []
+    hitory_input_dict = {}
+    feature_history_input_dict = {}
     for key, value in params.items():
         if key in utils.hitory_columns:
             if key == 'DATE':
-                hitory_input_list.append(datetime.datetime.strptime(value, '%y-%m-%d %H:%M'))
+                hitory_input_dict[key] = datetime.datetime.strptime(value, '%y-%m-%d %H:%M')
             elif key == 'WORKER_NAME':
-                hitory_input_list.append(value)
+                hitory_input_dict[key] = value
             elif key == 'COIL_ID':
-                hitory_input_list.append(value)
+                hitory_input_dict[key] = value
             elif key == 'CRM_ID':
-                hitory_input_list.append(value)
+                hitory_input_dict[key] = value
             else:
-                hitory_input_list.append(round(float(value),4))
+                hitory_input_dict[key] = round(float(value),4)
         else:
-            feature_history_input_list.append(round(float(value), 4))
+            feature_history_input_dict[key] = round(float(value), 4)
     
-    return tuple(hitory_input_list), tuple(feature_history_input_list)
+    return hitory_input_dict, feature_history_input_dict
