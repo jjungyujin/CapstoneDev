@@ -1,63 +1,109 @@
 <template>
-  <div class="card-body">
-    <table class="inputTable">
-      <thead>
-        <tr>
-          <th v-for="(column, index) in fstRow" :key="index">
-            {{ column.name }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td v-for="(column, index) in fstRow" :key="index">
-            <input
-              type="number"
-              step="0.001"
-              v-bind:id="column.id"
-              v-on:click="hidePredictResult()"
-              placeholder="값을 입력해주세요"
-              class="main-input"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="inputTable">
-      <thead>
-        <tr>
-          <th v-for="(column, index) in scdRow" :key="index">
-            {{ column.name }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td v-for="(column, index) in scdRow" :key="index">
-            <input
-              type="number"
-              step="0.001"
-              v-bind:id="column.id"
-              v-on:click="hidePredictResult()"
-              placeholder="값을 입력해주세요"
-              class="main-input"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="main-input-table-button">
-      <div id="reset-button" v-on:click="resetInputValues()">
-        초기화
-      </div>
-      <div id="predict-button" v-on:click="getInputValues()">
-        예측
+  <div class="container-fluid px-4">
+    <div>
+      <h1 class="mt-4">Prediction</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+          입력한 파라미터로 압연 공정을 진행했을 때 나오는 코일의 두께를
+          예측합니다.
+        </li>
+      </ol>
+      <div class="card mb-4">
+        <div class="card-body">
+          압연공정의 기본 정보를 입력해주세요.<br /><br />
+          <label for="workerName">작업자명 :</label>
+          <select id="workerName" class="basic-info-selector" name="workerName">
+            <option value="서용득">서용득</option>
+            <option value="조성우">조성우</option>
+            <option value="정유진" selected>정유진</option>
+            <option value="이정화">이정화</option>
+          </select>
+          <label for="rollingMillNum">압연기 번호 :</label>
+          <select
+            id="rollingMillNum"
+            class="basic-info-selector"
+            name="rollingMillNum"
+          >
+            <option value="1CRM">1CRM</option>
+            <option value="2CRM" selected>2CRM</option>
+            <option value="3CRM">3CRM</option>
+          </select>
+          <label for="coilNum">코일 번호 :</label>
+          <input
+            type="text"
+            id="coilNum"
+            placeholder="값을 입력해주세요"
+            class="dashboard-input"
+          />
+        </div>
       </div>
     </div>
-    <div v-if="isShow === 1">
-      <div id="predict-result">예측 결과 : {{ this.result }}</div>
-      <div id="save-button" v-on:click="saveHistory()">
-        저장
+    <div class="card mb-4">
+      <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        압연공정의 설정값을 입력해주세요.
+      </div>
+      <div class="card-body">
+        <table class="inputTable">
+          <thead>
+            <tr>
+              <th v-for="(column, index) in fstRow" :key="index">
+                {{ column.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td v-for="(column, index) in fstRow" :key="index">
+                <input
+                  type="number"
+                  step="0.001"
+                  v-bind:id="column.id"
+                  v-on:click="hidePredictResult()"
+                  placeholder="값을 입력해주세요"
+                  class="main-input"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="inputTable">
+          <thead>
+            <tr>
+              <th v-for="(column, index) in scdRow" :key="index">
+                {{ column.name }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td v-for="(column, index) in scdRow" :key="index">
+                <input
+                  type="number"
+                  step="0.001"
+                  v-bind:id="column.id"
+                  v-on:click="hidePredictResult()"
+                  placeholder="값을 입력해주세요"
+                  class="main-input"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="main-input-table-button">
+          <div id="reset-button" v-on:click="resetInputValues()">
+            초기화
+          </div>
+          <div id="predict-button" v-on:click="getInputValues()">
+            예측
+          </div>
+        </div>
+        <div v-if="isShow === 1">
+          <div id="predict-result">예측 결과 : {{ this.result }}</div>
+          <div id="save-button" v-on:click="saveHistory()">
+            저장
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -97,19 +143,23 @@ export default {
       this.isShow = 0;
     },
     saveHistory() {
-      console.log(this.historyObj);
+      let path = "http://localhost:8000/save_history";
+      const workerName = document.getElementById("workerName");
+      const rollingMillNum = document.getElementById("rollingMillNum");
+      const coilNum = document.getElementById("coilNum");
+      this.historyObj.WORKER_NAME =
+        workerName.options[workerName.selectedIndex].value;
+      this.historyObj.CRM_ID =
+        rollingMillNum.options[rollingMillNum.selectedIndex].value;
+      this.historyObj.COIL_ID = coilNum.value;
+      axios.post(path, this.historyObj);
     }
   },
   data() {
     return {
       result: "",
       isShow: 0,
-      historyObj: {
-        DATE: "22-12-11 14:50",
-        WORKER_NAME: "홍길동",
-        COIL_ID: "11",
-        CRM_ID: "13"
-      },
+      historyObj: {},
       fstRow: [
         {
           name: "코일의 평균 입측 두께",

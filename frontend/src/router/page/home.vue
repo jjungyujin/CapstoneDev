@@ -1,8 +1,6 @@
 <script>
 import mainHeader from "../../components/mainHeader";
 import mainNav from "../../components/mainNav";
-import mainDashboard from "../../components/mainDashboard";
-import mainInputTableHeader from "../../components/mainInputTableHeader";
 import mainInputTable from "../../components/mainInputTable";
 import mainFooter from "../../components/mainFooter";
 
@@ -10,8 +8,6 @@ export default {
   components: {
     mainHeader,
     mainNav,
-    mainDashboard,
-    mainInputTableHeader,
     mainInputTable,
     mainFooter
   }
@@ -24,13 +20,7 @@ export default {
     <div id="layoutSidenav">
       <mainNav />
       <div id="layoutSidenav_content">
-        <div class="container-fluid px-4">
-          <mainDashboard />
-          <div class="card mb-4">
-            <mainInputTableHeader />
-            <mainInputTable />
-          </div>
-        </div>
+        <mainInputTable />
         <mainFooter />
       </div>
     </div>
