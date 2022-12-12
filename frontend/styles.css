@@ -10,6 +10,13 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'IBM Plex Sans KR';
+}
+
 .basic-info-selector {
   width: auto;
   display: inline-block;
@@ -4363,6 +4370,10 @@ fieldset:disabled .btn {
   border-top-right-radius: 0;
 }
 
+nav {
+  background-color: #4E2535;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -4377,6 +4388,7 @@ fieldset:disabled .btn {
   cursor: pointer;
   color: #0d6efd;
   text-decoration: none;
+  font-family: 'Carter One';
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
@@ -4471,6 +4483,7 @@ fieldset:disabled .btn {
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  background-color: #171745;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -4491,6 +4504,7 @@ fieldset:disabled .btn {
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+  font-family: 'Carter One';
 }
 .navbar-nav {
   display: flex;
@@ -4911,11 +4925,13 @@ fieldset:disabled .btn {
 }
 
 .navbar-dark .navbar-brand {
-  color: #fff;
+  /* color: #fff; */
+  color: #171745;
 }
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
-  color: #fff;
+  /* color: #fff; */
+  color: #171745;
 }
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.55);
@@ -12019,6 +12035,7 @@ body {
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
+  font-family: 'Carter One';
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link {
   display: flex;
@@ -12104,6 +12121,9 @@ body {
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
   color: #0d6efd;
+}
+.sb-sidenav-menu {
+  background-color: #171745;
 }
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
@@ -12269,4 +12289,8 @@ body {
   width: 20px !important;
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
+}
+
+.bg-custom {
+  background-color: #F4ECFF;
 }
