@@ -72,6 +72,7 @@ export default {
     },
     formatDate(date_str) {
       let date_ = new Date(date_str);
+      date_.setHours(date_.getHours() - 9);
       return date_.toLocaleString('ko-KR');
     }
   },
