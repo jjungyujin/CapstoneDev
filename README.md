@@ -1,4 +1,4 @@
-# <img src="./frontend/src/assets/favicon.ico" width=23> CapstoneDev
+# <img src="./frontend/src/assets/favicon.ico" width=28> CapstoneDev
 ```bash
 부경대학교 시스템경영안전공학부 캡스톤디자인 결과물
 ```
