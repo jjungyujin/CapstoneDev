@@ -4,6 +4,16 @@
 ```
 - Project Wiki : [Notion](https://www.notion.so/6cf3e2079ecd479388d1aad014948f02)
 
+## 실행 코드
+```bash
+backend
+>> python __main__.py
+>> python server.py
+
+frontend
+>> npm run dev
+```
+
 ## PSET
 > Prediction System of Exit Thickness
 - 동국산업 압연공정 코일 두께 예측 시스템
